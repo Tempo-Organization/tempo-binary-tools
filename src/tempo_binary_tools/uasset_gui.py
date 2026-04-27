@@ -4,7 +4,7 @@ from pathlib import Path
 from tempo_binary_tool_manager import manager
 
 
-@dataclass
+@dataclass(kw_only=True)
 class UassetGuiToolInfo(manager.ToolInfo):
     tool_name: str = "uasset_gui"
     repo_name: str = "UAssetGUI"

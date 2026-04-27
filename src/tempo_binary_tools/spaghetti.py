@@ -4,14 +4,14 @@ from pathlib import Path
 from tempo_binary_tool_manager import manager
 
 
-@dataclass
+@dataclass(kw_only=True)
 class SpaghettiToolInfo(manager.ToolInfo):
     tool_name: str = "spaghetti"
     repo_name: str = "spaghetti"
     repo_owner: str = "bananaturtlesandwich"
     file_paths: list[Path] = field(default_factory=list)
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         self.file_paths = [Path(self.get_file_to_download())]
 
 

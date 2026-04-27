@@ -4,7 +4,7 @@ from pathlib import Path
 from tempo_binary_tool_manager import manager
 
 
-@dataclass
+@dataclass(kw_only=True)
 class StoveToolInfo(manager.ToolInfo):
     tool_name: str = "stove"
     repo_name: str = "stove"

@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from tempo_binary_tool_manager import manager
 
 
-@dataclass
+@dataclass(kw_only=True)
 class RetocToolInfo(manager.ToolInfo):
     tool_name: str = "retoc"
     repo_name: str = "retoc"

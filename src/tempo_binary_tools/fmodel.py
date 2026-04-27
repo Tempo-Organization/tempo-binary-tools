@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from tempo_binary_tool_manager import manager
 
 
-@dataclass
+@dataclass(kw_only=True)
 class FmodelToolInfo(manager.ToolInfo):
     tool_name: str = "FModel"
     repo_name: str = "FModel"

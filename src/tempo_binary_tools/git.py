@@ -1,41 +1,69 @@
+import os
 import requests
 
 
-def get_commit_short_hash_from_tag(repo_name, is_online: bool, tag_name="latest"):
-    """
-    Gets the short commit hash (7 characters) for a given tag (default 'latest').
+def get_github_token() -> str | None:
+    return os.getenv("GITHUB_TOKEN")
 
-    Args:
-        repo_name (str): GitHub repo in 'owner/repo' format.
-        tag_name (str): The tag name to fetch the commit hash from.
 
-    Returns:
-        str: 7-character short commit hash or an error message.
+def github_get(url: str, **kwargs) -> requests.Response: # noqa
+    headers = kwargs.pop("headers", {})
+
+    token = get_github_token()
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+
+    headers["Accept"] = "application/vnd.github+json"
+
+    timeout = kwargs.pop("timeout", 5)  # default once only
+
+    return requests.get(url, headers=headers, timeout=timeout, **kwargs)
+
+
+def get_commit_short_hash_from_tag(repo_name: str, is_online: bool, tag_name: str = "latest") -> str:
     """
+    Returns 7-char commit hash for a GitHub tag.
+    Raises exceptions on failure (no silent string errors).
+    """
+
     if not is_online:
-        raise RuntimeError('You are not able to get call get get_commit_short_hash_from_tag when not connected to the web.')
-    try:
-        # Get the tag reference
-        tag_ref_url = (
-            f"https://api.github.com/repos/{repo_name}/git/ref/tags/{tag_name}"
+        raise RuntimeError(
+            "Cannot fetch commit hash while offline."
         )
-        ref_response = requests.get(tag_ref_url)
+
+    try:
+        # Step 1: resolve tag reference
+        tag_ref_url = f"https://api.github.com/repos/{repo_name}/git/ref/tags/{tag_name}"
+        ref_response = github_get(tag_ref_url, timeout=10)
         ref_response.raise_for_status()
+
         tag_ref = ref_response.json()
 
-        # Lightweight tag points directly to a commit
-        if tag_ref["object"]["type"] == "commit":
-            return tag_ref["object"]["sha"][:7]
+        obj_type = tag_ref.get("object", {}).get("type")
+        obj_url = tag_ref.get("object", {}).get("url")
 
-        # Annotated tag — follow the tag object
-        tag_object_url = tag_ref["object"]["url"]
-        tag_object_response = requests.get(tag_object_url)
+        if not obj_type or not obj_url:
+            raise RuntimeError(f"Malformed GitHub response for tag {tag_name}")
+
+        # Case 1: direct commit
+        if obj_type == "commit":
+            sha = tag_ref["object"]["sha"]
+            return sha[:7]
+
+        # Case 2: annotated tag
+        tag_object_response = github_get(obj_url, timeout=10)
         tag_object_response.raise_for_status()
+
         tag_object = tag_object_response.json()
 
-        return tag_object["object"]["sha"][:7]
+        sha = tag_object.get("object", {}).get("sha")
+        if not sha:
+            raise RuntimeError("Commit SHA not found in annotated tag response")
+
+        return sha[:7]
 
     except requests.exceptions.RequestException as e:
-        return f"Request error: {e}"
-    except KeyError:
-        return "Tag or commit data not found."
+        raise RuntimeError(f"GitHub API request failed: {e}")
+
+    except KeyError as e:
+        raise RuntimeError(f"Unexpected GitHub response structure: {e}")

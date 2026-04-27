@@ -3,8 +3,7 @@ from dataclasses import dataclass
 from tempo_binary_tool_manager import manager
 
 
-# test this later (because tool name is not the same as the repo name)
-@dataclass
+@dataclass(kw_only=True)
 class UmodelToolInfo(manager.ToolInfo):
     tool_name: str = "umodel"
     repo_name: str = "UEViewer"
