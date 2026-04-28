@@ -178,11 +178,10 @@ wheels = [
 [[package]]
 name = "tempo-binary-tool-manager"
 version = "0.1.0"
-source = { git = "https://www.github.com/Tempo-Organization/tempo-binary-tool-manager#14b79adbcb71c02927e1a5e31184c4eaabc5a22d" }
+source = { git = "https://www.github.com/Tempo-Organization/tempo-binary-tool-manager#50391c73d0c311bb9c5b524a22855e1a9bd7b37e" }
 dependencies = [
     { name = "platformdirs" },
     { name = "requests" },
-    { name = "tempo-settings" },
     { name = "tomlkit" },
 ]
 
@@ -214,11 +213,6 @@ dev = [
     { name = "ruff", specifier = ">=0.15.12" },
     { name = "ty", specifier = ">=0.0.32" },
 ]
-
-[[package]]
-name = "tempo-settings"
-version = "0.1.0"
-source = { git = "https://www.github.com/Tempo-Organization/tempo-settings#0cdabc4e19b3c287c041972eb47d4704becb99dc" }
 
 [[package]]
 name = "tomlkit"

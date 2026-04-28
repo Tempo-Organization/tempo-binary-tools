@@ -28,7 +28,7 @@ def get_commit_short_hash_from_tag(repo_name: str, is_online: bool, tag_name: st
 
     if not is_online:
         raise RuntimeError(
-            "Cannot fetch commit hash while offline."
+            "Cannot fetch commit hash while offline.",
         )
 
     try:

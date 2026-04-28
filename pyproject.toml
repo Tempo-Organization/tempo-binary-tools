@@ -44,3 +44,29 @@ injector = "tempo_binary_tools.injector:InjectorToolInfo"
 spaghetti = "tempo_binary_tools.spaghetti:SpaghettiToolInfo"
 stove = "tempo_binary_tools.stove:StoveToolInfo"
 ue_vr = "tempo_binary_tools.ue_vr:UEVRToolInfo"
+jmap = "tempo_binary_tools.jmap:JmapToolInfo"
+patternsleuth = "tempo_binary_tools.patternsleuth:PatternsleuthToolInfo"
+
+[tool.ruff]
+exclude = []
+
+[tool.ruff.lint]
+select = [
+    "ANN",
+    "PTH",
+    "N",
+    "BLE",
+    "YTT",
+    "ASYNC",
+    "B",
+    "A",
+    "COM",
+    "C4",
+    "EXE",
+    "FA",
+    "INT",
+    "PIE",
+    "T20",
+    "PYI",
+    "UP047"
+]

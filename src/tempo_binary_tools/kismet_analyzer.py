@@ -22,7 +22,7 @@ class KismetAnalyzerToolInfo(manager.ToolInfo):
 
         if not commit_short_hash or len(commit_short_hash) != 7:
             raise RuntimeError(
-                f"Invalid commit hash returned from GitHub API: {commit_short_hash}"
+                f"Invalid commit hash returned from GitHub API: {commit_short_hash}",
             )
 
         if manager.is_windows():
