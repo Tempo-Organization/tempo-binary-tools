@@ -178,7 +178,7 @@ wheels = [
 [[package]]
 name = "tempo-binary-tool-manager"
 version = "0.1.0"
-source = { git = "https://www.github.com/Tempo-Organization/tempo-binary-tool-manager#b133bd9a9b79d4edf84eb7ccc3ee8ecd1ed09f3d" }
+source = { git = "https://www.github.com/Tempo-Organization/tempo-binary-tool-manager#14b79adbcb71c02927e1a5e31184c4eaabc5a22d" }
 dependencies = [
     { name = "platformdirs" },
     { name = "requests" },

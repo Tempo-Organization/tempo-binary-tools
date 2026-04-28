@@ -1,25 +1,25 @@
 from tempo_binary_tool_manager import manager
 
 
-class PatternsleuthToolInfo(manager.ToolInfo):
+class UEVRMcpToolInfo(manager.ToolInfo):
     def __init__(self, cache: manager.ToolsCache) -> None:
         super().__init__(
-            tool_name="patternsleuth",
-            repo_name="patternsleuth",
-            repo_owner="Tempo-Organization",
+            tool_name="ue_vr_mcp",
+            repo_name="uevr-mcp",
+            repo_owner="elliotttate",
             cache=cache,
         )
 
 
     def get_executable_name(self) -> str:
         if manager.is_windows():
-            return 'patternsleuth.exe'
+            return ''
         else:
             raise ValueError('unsupported os')
 
 
     def get_file_to_download(self) -> str:
         if manager.is_windows():
-            return 'patternsleuth-x86_64-pc-windows-msvc.zip'
+            return ''
         else:
             raise ValueError('unsupported os')

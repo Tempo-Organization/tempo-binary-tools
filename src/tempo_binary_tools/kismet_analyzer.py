@@ -1,13 +1,16 @@
-from dataclasses import dataclass
 from tempo_binary_tool_manager import manager
 from tempo_binary_tools import git
 
 
-@dataclass(kw_only=True)
 class KismetAnalyzerToolInfo(manager.ToolInfo):
-    tool_name: str = "kismet_analyzer"
-    repo_name: str = "kismet-analyzer"
-    repo_owner: str = "trumank"
+    def __init__(self, cache: manager.ToolsCache) -> None:
+        super().__init__(
+            tool_name="kismet_analyzer",
+            repo_name="kismet-analyzer",
+            repo_owner="trumank",
+            cache=cache,
+        )
+
 
     def get_file_to_download(self) -> str:
         # FIX: never allow invalid hash strings to propagate
@@ -28,6 +31,7 @@ class KismetAnalyzerToolInfo(manager.ToolInfo):
             return f"{self.repo_name}-{commit_short_hash}-linux-x64.zip"
         else:
             raise ValueError("Unsupported OS")
+
 
     def get_executable_name(self) -> str:
         if manager.is_windows():

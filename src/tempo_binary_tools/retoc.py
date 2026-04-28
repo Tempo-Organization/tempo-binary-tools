@@ -1,18 +1,20 @@
 from packaging.version import Version
-from dataclasses import dataclass
 
 from tempo_binary_tool_manager import manager
 
 
-@dataclass(kw_only=True)
 class RetocToolInfo(manager.ToolInfo):
-    tool_name: str = "retoc"
-    repo_name: str = "retoc"
-    repo_owner: str = "trumank"
+    def __init__(self, cache: manager.ToolsCache) -> None:
+        super().__init__(
+            tool_name="retoc",
+            repo_name="retoc",
+            repo_owner="trumank",
+            cache=cache,
+        )
 
 
     def get_download_url(self) -> str:
-        release_tag = self.get_current_preferred_release_tag()
+        release_tag = self.resolve_release_tag()
 
         version = Version(release_tag.lstrip("v"))
 

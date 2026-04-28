@@ -32,3 +32,15 @@ dev = [
 [tool.typos]
 [tool.typos.default]
 extend-words = { ue = "ue" }
+
+[project.entry-points."tempo.tools"]
+retoc = "tempo_binary_tools.retoc:RetocToolInfo"
+repak = "tempo_binary_tools.repak:RepakToolInfo"
+fmodel = "tempo_binary_tools.fmodel:FmodelToolInfo"
+umodel = "tempo_binary_tools.umodel:UmodelToolInfo"
+uasset_gui = "tempo_binary_tools.uasset_gui:UassetGuiToolInfo"
+kismet_analyzer = "tempo_binary_tools.kismet_analyzer:KismetAnalyzerToolInfo"
+injector = "tempo_binary_tools.injector:InjectorToolInfo"
+spaghetti = "tempo_binary_tools.spaghetti:SpaghettiToolInfo"
+stove = "tempo_binary_tools.stove:StoveToolInfo"
+ue_vr = "tempo_binary_tools.ue_vr:UEVRToolInfo"

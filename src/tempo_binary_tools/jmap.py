@@ -1,13 +1,14 @@
-from dataclasses import dataclass
-
 from tempo_binary_tool_manager import manager
 
 
-@dataclass(kw_only=True)
 class JmapToolInfo(manager.ToolInfo):
-    tool_name: str = "jmap"
-    repo_name: str = "jmap"
-    repo_owner: str = "trumank"
+    def __init__(self, cache: manager.ToolsCache) -> None:
+        super().__init__(
+            tool_name="jmap",
+            repo_name="jmap",
+            repo_owner="trumank",
+            cache=cache,
+        )
 
 
     def get_executable_name(self) -> str:

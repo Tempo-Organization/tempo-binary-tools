@@ -1,14 +1,15 @@
-from dataclasses import dataclass
-
 from tempo_binary_tool_manager import manager
 
 
-@dataclass(kw_only=True)
-class UmodelToolInfo(manager.ToolInfo):
-    tool_name: str = "umodel"
-    repo_name: str = "UEViewer"
-    repo_owner: str = "Mythical-Github"
 
+class UmodelToolInfo(manager.ToolInfo):
+    def __init__(self, cache: manager.ToolsCache) -> None:
+        super().__init__(
+            tool_name="umodel",
+            repo_name="UEViewer",
+            repo_owner="Mythical-Github",
+            cache=cache,
+        )
 
     def get_executable_name(self) -> str:
         if manager.is_windows():

@@ -1,13 +1,14 @@
-from dataclasses import dataclass
-
 from tempo_binary_tool_manager import manager
 
 
-@dataclass(kw_only=True)
 class RepakToolInfo(manager.ToolInfo):
-    tool_name: str = 'repak'
-    repo_name: str = 'repak'
-    repo_owner: str = 'trumank'
+    def __init__(self, cache: manager.ToolsCache) -> None:
+        super().__init__(
+            tool_name="repak",
+            repo_name="repak",
+            repo_owner="trumank",
+            cache=cache,
+        )
 
 
     def get_file_to_download(self) -> str:

@@ -1,13 +1,14 @@
-from dataclasses import dataclass
-
 from tempo_binary_tool_manager import manager
 
 
-@dataclass(kw_only=True)
 class FmodelToolInfo(manager.ToolInfo):
-    tool_name: str = "FModel"
-    repo_name: str = "FModel"
-    repo_owner: str = "4sval"
+    def __init__(self, cache: manager.ToolsCache) -> None:
+        super().__init__(
+            tool_name="fmodel",
+            repo_name="FModel",
+            repo_owner="4sval",
+            cache=cache,
+        )
 
 
     def get_executable_name(self) -> str:
