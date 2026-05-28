@@ -9,6 +9,7 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "packaging>=26.1",
+    "tempo-binary-tool-manager",
 ]
 
 [project.scripts]
@@ -17,6 +18,9 @@ tempo-binary-tools = "tempo_binary_tools:main"
 [build-system]
 requires = ["uv_build>=0.9.26,<0.10.0"]
 build-backend = "uv_build"
+
+[tool.uv.sources]
+tempo-binary-tool-manager = { git = "https://www.github.com/Tempo-Organization/tempo-binary-tool-manager" }
 
 [dependency-groups]
 dev = [
@@ -42,7 +46,6 @@ stove = "tempo_binary_tools.stove:StoveToolInfo"
 ue_vr = "tempo_binary_tools.ue_vr:UEVRToolInfo"
 jmap = "tempo_binary_tools.jmap:JmapToolInfo"
 patternsleuth = "tempo_binary_tools.patternsleuth:PatternsleuthToolInfo"
-tempo_shell_scripts = "tempo_binary_tools.tempo_shell_scripts:TempoShellScriptsToolInfo"
 
 [tool.ruff]
 exclude = []
