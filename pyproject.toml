@@ -46,6 +46,7 @@ stove = "tempo_binary_tools.stove:StoveToolInfo"
 ue_vr = "tempo_binary_tools.ue_vr:UEVRToolInfo"
 jmap = "tempo_binary_tools.jmap:JmapToolInfo"
 patternsleuth = "tempo_binary_tools.patternsleuth:PatternsleuthToolInfo"
+tempo_shell_scripts = "tempo_binary_tools.tempo_shell_scripts:TempoShellScriptsToolInfo"
 
 [tool.ruff]
 exclude = []
