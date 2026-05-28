@@ -63,7 +63,7 @@ def get_commit_short_hash_from_tag(repo_name: str, is_online: bool, tag_name: st
         return sha[:7]
 
     except requests.exceptions.RequestException as e:
-        raise RuntimeError(f"GitHub API request failed: {e}")
+        raise RuntimeError(f"GitHub API request failed: {e}") from e
 
     except KeyError as e:
-        raise RuntimeError(f"Unexpected GitHub response structure: {e}")
+        raise RuntimeError(f"Unexpected GitHub response structure: {e}") from e
